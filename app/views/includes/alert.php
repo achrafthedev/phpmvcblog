@@ -1,28 +1,27 @@
-<div class="row">
-	<div class="col-sm-6 mt-2 mb-1 mx-auto text-center" >
-		<h3 class="" style="color: white; background-color: red;">
-
-		<?php 
-			if(isset($_SESSION['update_msg']) && !empty($_SESSION['update_msg'])){
-				echo $_SESSION['update_msg'];
-				unset($_SESSION['update_msg']);
-			}
-			
-			if(isset($_SESSION['register_msg']) && !empty($_SESSION['register_msg'])){
-				echo $_SESSION['register_msg'];
-				unset($_SESSION['register_msg']);
-			}
-
-			if(isset($_SESSION['delete_msg']) && !empty($_SESSION['delete_msg'])){
-				echo $_SESSION['delete_msg'];
-				unset($_SESSION['delete_msg']);
-			}
-
-			if(isset($_SESSION['create_msg']) && !empty($_SESSION['create_msg'])){
-				echo $_SESSION['create_msg'];
-				unset($_SESSION['create_msg']);
-			}
-		 ?>
-		 </h3>
-	</div>
-</div>
+<?php if (isset($_SESSION['update_msg']) || isset($_SESSION['register_msg']) || isset($_SESSION['delete_msg']) || isset($_SESSION['create_msg'])) : ?>
+    <div class="alert-container">
+        <?php if (isset($_SESSION['update_msg'])) : ?>
+            <div class="alert alert-success">
+                <i class="fa-solid fa-circle-check"></i> &nbsp; <?php echo $_SESSION['update_msg']; unset($_SESSION['update_msg']); ?>
+            </div>
+        <?php endif; ?>
+        
+        <?php if (isset($_SESSION['register_msg'])) : ?>
+            <div class="alert alert-success">
+                <i class="fa-solid fa-circle-check"></i> &nbsp; <?php echo $_SESSION['register_msg']; unset($_SESSION['register_msg']); ?>
+            </div>
+        <?php endif; ?>
+        
+        <?php if (isset($_SESSION['create_msg'])) : ?>
+            <div class="alert alert-success">
+                <i class="fa-solid fa-circle-check"></i> &nbsp; <?php echo $_SESSION['create_msg']; unset($_SESSION['create_msg']); ?>
+            </div>
+        <?php endif; ?>
+        
+        <?php if (isset($_SESSION['delete_msg'])) : ?>
+            <div class="alert alert-danger">
+                <i class="fa-solid fa-circle-exclamation"></i> &nbsp; <?php echo $_SESSION['delete_msg']; unset($_SESSION['delete_msg']); ?>
+            </div>
+        <?php endif; ?>
+    </div>
+<?php endif; ?>

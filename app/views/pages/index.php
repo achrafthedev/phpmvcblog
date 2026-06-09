@@ -1,20 +1,21 @@
-<?php 
+<?php require APPROOT . '/views/includes/head.php'; ?>
+<?php require APPROOT . '/views/includes/navigation.php'; ?>
+<?php require APPROOT . '/views/includes/alert.php'; ?>
 
-	require_once APPROOT.'/views/includes/header.php';
- ?>
+<section id="section-landing">
+    <div class="wrapper-landing">
+        <h1><?php echo $data['title']; ?></h1>
+        <p><?php echo $data['message']; ?></p>
+        <div class="cta-group">
+            <?php if (isLoggedIn()) : ?>
+                <a href="<?php echo URLROOT; ?>/posts/dashboard" class="btn btn-primary"><i class="fa-solid fa-gauge"></i> Go to Dashboard</a>
+                <a href="<?php echo URLROOT; ?>/posts" class="btn btn-secondary"><i class="fa-solid fa-book-open"></i> Explore Blog</a>
+            <?php else : ?>
+                <a href="<?php echo URLROOT; ?>/users/login" class="btn btn-primary"><i class="fa-solid fa-right-to-bracket"></i> Sign In</a>
+                <a href="<?php echo URLROOT; ?>/users/register" class="btn btn-secondary"><i class="fa-solid fa-user-plus"></i> Join Now</a>
+            <?php endif; ?>
+        </div>
+    </div>
+</section>
 
-
- 	<div class="card text-center p-sm-4 mx-auto w-75 mt-5 p-sm-4 hoverable">
- 		<p class="card-text">
- 			<?php echo $data['message']; ?>
- 		</p>
- 	</div>
-
- 	<div class="card text-center p-sm-4 mx-auto w-75 mt-5 p-sm-4 hoverable">
- 		<p class="card-text">
- 			<a class="btn btn-success mx-sm-auto m-2" href="<?php echo URL.'userscontroller/login'; ?>">LOGIN</a>
- 			<a class="btn btn-info mx-sm-auto m-2" href="<?php echo URL.'userscontroller/register'; ?>">RESGISTER</a>
- 		</p>
- 	</div>
-
-
+<?php require APPROOT . '/views/includes/footer.php'; ?>
