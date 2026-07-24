@@ -5,3 +5,18 @@ on:
 permissions:
   contents: write
 jobs:
+  php-cs-fixer:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.2"
+      - name: Run PHP CS Fixer
+        run: |
+          composer global require friendsofphp/php-cs-fixer --quiet
+          ~/.composer/vendor/bin/php-cs-fixer fix --allow-risky=yes || true
+      - name: Commit formatting changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "style: auto-format with PHP CS Fixer [skip ci]"
